@@ -1,0 +1,13 @@
+package com.workout.DashboardSpringReact;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class DashboardSpringReactApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
