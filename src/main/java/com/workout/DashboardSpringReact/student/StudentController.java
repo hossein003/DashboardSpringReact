@@ -30,7 +30,32 @@ public class StudentController {
                         3L,
                         "Alex",
                         "Alex@gmail.com",
-                        Gender.FEMALE )
+                        Gender.FEMALE ),
+                new Student(
+                        4L,
+                        "David",
+                        "David@gmail.com",
+                        Gender.MALE ),
+                new Student(
+                        5L,
+                        "Janet",
+                        "Janet@gmail.com",
+                        Gender.FEMALE ),
+                new Student(
+                        6L,
+                        "Zahra",
+                        "Zahra@gmail.com",
+                        Gender.FEMALE ),
+                new Student(
+                        7L,
+                        "Ali",
+                        "Ali@gmail.com",
+                        Gender.MALE ),
+                new Student(
+                        8L,
+                        "Reza",
+                        "Reza@gmail.com",
+                        Gender.MALE )
         );
         return students;
 
