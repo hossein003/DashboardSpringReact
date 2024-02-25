@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DashboardSpringReactApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(DashboardSpringReactApplication.class, args);
 	}
 
