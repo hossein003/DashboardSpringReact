@@ -3,12 +3,12 @@ import './App.css';
 import React, {useState, useEffect} from "react";
 import {
     DesktopOutlined,
-    FileOutlined,
+    FileOutlined, LoadingOutlined,
     PieChartOutlined,
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
-import {Breadcrumb, Layout, Menu, theme, Table} from 'antd';
+import {Breadcrumb, Layout, Menu, theme, Table, Spin, Empty} from 'antd';
 
 function getItem(label, key, icon, children) {
     return {
@@ -54,10 +54,22 @@ const columns = [
         key: 'gender',
     },
 ];
-
+const antSpin = () => (
+    <Spin
+        indicator={
+            <LoadingOutlined
+                style={{
+                    fontSize: 24,
+                }}
+                spin
+            />
+        }
+    />
+);
 function App() {
     const [students, setStudents] = useState([]);
     const [collapsed, setCollapsed] = useState(false);
+    const [fetching, setFetching] = useState(true)
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
@@ -67,6 +79,7 @@ function App() {
             .then(data => {
                 console.log(data);
                 setStudents(data);
+                setFetching(false);
             });
     useEffect(() => {
         console.log("component is mounted");
@@ -74,10 +87,21 @@ function App() {
     }, []);
 
     const renderStudent = () => {
-        if (students.length <= 0){
-            return "No data available";
+        if (fetching){
+            return antSpin();
         }
-        return <Table dataSource={students} columns={columns} />;
+        if (students.length <= 0){
+            return  <Empty />;
+        }
+        return <Table
+            dataSource={students}
+            columns={columns}
+            bordered
+            title={() => 'Students Information'}
+            pagination={{ pageSize: 50 }}
+            scroll={{ y: 240 }}
+            rowKey={(student) => student.id}
+        />;
     }
 
     return (
@@ -125,7 +149,7 @@ function App() {
                         textAlign: 'center',
                     }}
                 >
-                    Hossein Design ©{new Date().getFullYear()}
+                    By Hossein Salehi
                 </Footer>
             </Layout>
         </Layout>
